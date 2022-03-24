@@ -63,7 +63,7 @@ function setup(config) {
         setTimeout(function () {
             const state = document.readyState;
 
-            if (state === 'interactive' || state === 'complete') {
+            if (config.autostart && (state === 'interactive' || state === 'complete')) {
                 attachHandlers(config);
                 initSender(logs, config);
                 started = config.on = true;

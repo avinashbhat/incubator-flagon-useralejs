@@ -22,6 +22,8 @@
  * @param  {Object} newConfig Configuration object to merge into the current config.
  */
 export function configure(config, newConfig) {
+  const configAutostart = config['autostart'];
+  const newConfigAutostart = newConfig['autostart'];
   Object.keys(newConfig).forEach(function(option) {
     if (option === 'userFromParams') {
       const userId = getUserIdFromParams(newConfig[option]);
@@ -30,6 +32,9 @@ export function configure(config, newConfig) {
       }
     }
     config[option] = newConfig[option];
+    if (configAutostart === false || newConfigAutostart === false){
+      config['autostart'] = false;
+    }
   });
 }
 
