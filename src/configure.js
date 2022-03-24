@@ -22,20 +22,21 @@
  * @param  {Object} newConfig Configuration object to merge into the current config.
  */
 export function configure(config, newConfig) {
-  const configAutostart = config['autostart'];
-  const newConfigAutostart = newConfig['autostart'];
-  Object.keys(newConfig).forEach(function(option) {
-    if (option === 'userFromParams') {
-      const userId = getUserIdFromParams(newConfig[option]);
-      if (userId) {
-        config.userId = userId;
-      }
+    const configAutostart = config['autostart'];
+    const newConfigAutostart = newConfig['autostart'];
+    Object.keys(newConfig).forEach(function (option) {
+            if (option === 'userFromParams') {
+                const userId = getUserIdFromParams(newConfig[option]);
+                if (userId) {
+                    config.userId = userId;
+                }
+            }
+            config[option] = newConfig[option];
+        }
+    )
+    if (configAutostart === false || newConfigAutostart === false) {
+        config['autostart'] = false;
     }
-    config[option] = newConfig[option];
-    if (configAutostart === false || newConfigAutostart === false){
-      config['autostart'] = false;
-    }
-  });
 }
 
 /**
@@ -44,13 +45,13 @@ export function configure(config, newConfig) {
  * @return {string|null}       The extracted/decoded userid, or null if none is found.
  */
 export function getUserIdFromParams(param) {
-  const userField = param;
-  const regex = new RegExp('[?&]' + userField + '(=([^&#]*)|&|#|$)');
-  const results = window.location.href.match(regex);
+    const userField = param;
+    const regex = new RegExp('[?&]' + userField + '(=([^&#]*)|&|#|$)');
+    const results = window.location.href.match(regex);
 
-  if (results && results[2]) {
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  } else {
-    return null;
-  }
+    if (results && results[2]) {
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    } else {
+        return null;
+    }
 }
