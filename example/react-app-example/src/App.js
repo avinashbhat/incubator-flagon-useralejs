@@ -20,17 +20,20 @@ import './App.css';
 import * as userale from  'flagon-userale'
 
 function App() {
+  const handleOnClick = () => {
+    userale.start()
+  }
+
   userale.options({
     autostart: false
   })
-  userale.start()
-  userale.packageCustomLog({"hello": "world"})
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <p onClick={handleOnClick}>
+          Click this text to start userale.
         </p>
         <a
           className="App-link"

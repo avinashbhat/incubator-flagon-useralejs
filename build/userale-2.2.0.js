@@ -1127,7 +1127,7 @@
    */
 
   function start() {
-    if (!exports.started) {
+    if (!exports.started || config.autostart === false) {
       exports.started = config.on = true;
       config.autostart = true;
     }
