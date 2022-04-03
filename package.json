@@ -13,7 +13,8 @@
     "journey:debug": "cypress open",
     "journey:ci": "start-server-and-test example:run 8000 journey",
     "example:run": "node example/server.js",
-    "example:watch": "nodemon -w ./example example/server.js"
+    "example:watch": "nodemon -w ./example example/server.js",
+    "react-example:run": "npm start --prefix example/react-app-example"
   },
   "repository": {
     "type": "git",
